@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
+    <script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilos.css">
+    
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>    
+    
+    
+    <!-- <title> WebRTC Multiconnection </title> -->
+</head>
+<body>                    
+    <div class="container">
+        <header class="header">
+          <div class="logo-container">        
+            <h1  class="logo-text">
+                 SDS-UnB / Web  Conf            
+            </h1>  
+             
+            <div id="id-sala">
+               <span> Sala-ID: </span>  <input id="txt-roomid" placeholder="Único Room ID" class="form-control">
+                <button id="btn-entrar" class="btn btn-info"> Entrar </button>                
+            </div>
+            
+          </div>    
+                 
+        </header>      
+  
+         <div class="content-container">
+            <div class="active-users-panel" id="chat" id="div-scroll">
+              <h2 class="panel-title"> Usuários ativos </h2>
+             
+         </div>                 
+
+         <div class="form-group" id="div-mensagem">
+            <ol class="chat">
+          
+            </ol>
+
+            <div id='bottom'>
+                <input id="textarea" type="text" placeholder="Sua mensagem aqui" class="form-control">
+                <p class="help-block"></p>
+            </div>
+          </div>
+        
+            <div class="video-chat-container">
+              <h2 class="talk-info" id="talking-with-info"> Vídeos ativos </h2>                                         
+                <div id="video-local"></div>
+                <div id="videos-remotos"></div> 
+              
+              <!-- <div class="form-group" id="div-usuario" >
+                  <input type="text" class="form-control" placeholder="Seu nome aqui" id="nickname">
+              </div> -->
+
+              <div class="nickname_container" id="nick">
+                
+                <form id="submit"><input type="text" id="nickname" placeholder="Seu nome aqui" class="form-control"></form>
+              
+              </div>
+  
+              <div class="row call-btn-div">
+                <!-- <button  id="bt-cam"> WebCam </button> -->
+                <a > <img src="imagens/cam_desativada.PNG" id="img-cam"> </a>
+                <a > <img src="imagens/mic_desativado.PNG" id="mic_des"> </a>
+            </div>
+          </div>
+        </div>    
+  
+    </div>
+    
+    <script src="room.js"></script>
+    <script src="chat.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>

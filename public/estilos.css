@@ -1,0 +1,258 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f9fafc;
+    color: #595354;
+}
+  
+
+.header 
+{
+  background-color: #ffffff;
+  padding: 10px 40px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 1.2%;
+  height: 55px;
+}
+
+h1 { margin-top: -0.5%; }
+
+#index
+{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 48%;
+    left: 50%;
+    max-width: 33%;
+    text-align: center;
+}
+
+.container
+{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 48%;
+    left: 50%;
+    max-width: 100%;
+    /* text-align: center; */
+}
+
+.content-container 
+{
+  width: 100%;
+  height: calc(100vh - 65px);
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.active-users-panel 
+{
+    padding-left: 0.7%;
+    width: 300px;
+    height: 100%;
+    border-right: 1px solid #cddfe7;
+    padding-bottom: 5%;
+}
+
+.panel-title
+{
+  margin: 10px 0 0 0;
+  padding-left: 30px;
+  font-weight: 500;
+  font-size: 18px;
+  border-bottom: 1px solid #cddfe7;
+  padding-bottom: 4px;
+  font-size: 30px;
+  margin-top: 0.5%;
+}
+
+.active-user 
+{
+  padding: 10px 30px;
+  border-bottom: 1px solid #cddfe7;
+  cursor: pointer;
+  user-select: none;
+}
+
+.active-user:hover 
+{
+    background-color: #e8e9eb;
+    transition: background-color 0.5s ease;
+}
+
+.video-chat-container 
+{
+  padding: 0 20px;
+  flex: 1;
+  position: relative;
+  height: 89%;
+}
+.video-container
+{
+    height: 98.1%;
+}
+
+#nickname
+{
+    margin-bottom: 20%;
+    width: 175px;
+    position: relative;
+    left: 27%;
+    transform: translate(-50%, -50%);
+    height: 48px;  
+}
+
+#txt-roomid
+{
+  position: absolute;
+  left: 66%;
+  transform: translate(-50%, -50%);
+  top: 6%;
+  text-align: center;
+  width: 160px; 
+}
+
+#id-sala
+{
+    margin-left: 54%;
+    margin-top: -3.5%;    
+}
+
+span
+{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#nick
+{
+  position: absolute;
+  left: 11%;
+  transform: translate(-50%, -50%);
+  top: 112%;
+  
+}
+
+button
+{
+   width: 385px;
+   font-size: 25px;
+}
+
+#btn-entrar
+{
+  position: absolute;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  top: 6%;  
+}
+
+#btn-criar
+{
+    width: 95%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 149%;
+    font-size: 18pt; 
+}
+
+#textarea
+{
+  position: absolute;
+  left: 0.2%;
+  transform: translate(0%, 50%);
+  top: 87%;
+  width: 20.3%; 
+}
+
+#div-scroll
+{
+    overflow-y: scroll;
+    scroll-behavior: smooth;    
+}
+
+#img-cam
+{
+   position: absolute;
+   transform: translate(-50%, -50%);
+   left: 50%;
+   top: 108.8%;
+   height: 45px;
+}
+
+#mic_des
+{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 45.7%;
+  top: 108.8%;
+  height: 45px;
+}
+
+.videoContainer 
+{
+  position: relative;
+  overflow: hidden;
+  
+  min-height: var(--rowHeight);
+  min-width: var(--colWidth);
+  
+}
+
+.videoContainer video 
+{
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: auto;
+  width: 100%;
+}
+
+#videos-remotos 
+{
+    position: absolute;    
+    transform: translate(-50%, -50%);
+    top: 48%;
+    left: 50.5%;
+    border: 1px solid #cddfe7;
+    width: 98%;
+    height: 83%;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+    align-content: center;
+    color: #595354;
+}
+
+video
+{
+    width: 100%;
+    border-radius: 15px; 
+    height: 100%;   
+}
+
+#video-local 
+{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 101%;
+  left: 87%;
+  /* border: 1px solid #cddfe7; */
+  /* right: 40px; */
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  width: 298px;
+  height: 130px;
+  /* border-radius: 15px; */
+  /* padding: 5px; */
+}
+
+#textarea
+{ 
+    background-color: #FFFF00;
+    height: 48px;
+}
