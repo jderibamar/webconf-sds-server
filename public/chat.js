@@ -1,6 +1,6 @@
 $( function()
 { 
-    var socket = io.connect('https://webconf-sds-server.herokuapp.com')
+    socket = io.connect('https://webconf-sds-server.herokuapp.com/')
     // socket = io('http://localhost:3000')
     var ready = false
    
