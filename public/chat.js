@@ -1,47 +1,39 @@
 $( function()
 { 
-    var socket = io.connect("http://localhost:3000");
-    var ready = false;
-
-    $('#submit').submit(function(e) 
+    // var socket = io.connect('https://dashboard.heroku.com/apps/webconf-sds-server')
+    socket = io('http://localhost:3000')
+    var ready = false
+   
+    $('#submit').on('submit', (e) =>
     {
-		e.preventDefault();
-		$("#nick").fadeOut()
-		$("#chat").fadeIn()
-		let name = $("#nickname").val();
-		let time = new Date();
-		$("#name").html(name);
-		$("#time").html('First login: ' + time.getHours() + ':' + time.getMinutes());
+		e.preventDefault()
+		$('#nick').fadeOut()
+		$('#chat').fadeIn()
+		let name = $('#nickname').val()
+		// let time = new Date()
+		// $('#name').html(name)
+		// $('#time').html('First login: ' + time.getHours() + ':' + time.getMinutes() )
 
-		ready = true;
-		socket.emit("join", name);
+		ready = true
+        socket.emit('join', name)                
+	})
 
-	});
-
-    $("#textarea").keypress(function(e)
+    $('#textarea').on('keypress', (e) =>
     {
         if(e.which == 13) 
         {
-        	var text = $("#textarea").val();
-        	$("#textarea").val('');
-        	var time = new Date();
-                    $(".chat").append('<li class="self"><div class="msg"><span>' + $("#nickname").val() 
-                    + ':</span><p>' + text + '</p><time>' + time.getHours() + ':' + time.getMinutes() 
-                    + '</time></div></li>')
-					
-					socket.emit("send", text)
-					// automatically scroll down
-					// document.getElementById('bottom').scrollIntoView()
-        }
-    });
+        	var text = $("#textarea").val()
+        	$('#textarea').val('')
+        	var time = new Date()
+            $('.chat').append('<li class="self"><div class="msg"><span>' + $("#nickname").val() 
+            + ':</span><p>' + text + '</p><time>' + time.getHours() + ':' + time.getMinutes()
+            + '</time></div></li>')
 
-    socket.on('update', msg =>
-    {
-        if (ready) 
-        {
-    		$('.chat').append('<li class="info">' + msg + '</li>')
-    	}
-    })
+            socket.emit('send', text)
+            // automatically scroll down
+            // document.getElementById('bottom').scrollIntoView()
+        }
+    })      
 
     socket.on('chat', (client, msg) =>
     {
@@ -52,9 +44,22 @@ $( function()
             + msg + '</p><time>' + time.getHours() 
             + ':' + time.getMinutes() + '</time></div></li>')
     	}
+    })    
+
+    socket.on('novo_cliente', client =>
+    {
+        peerId = client.id
+        
+        console.log(`Cliente ID: ${ client.id } conectou`)
+        
+        if (ready) 
+        {                
+            //    $('.chat').append('<li class="info">' + msg + '</li>')
+        }
     })
 
 })
+
 
 // socket = io()
 
@@ -62,20 +67,6 @@ $( function()
 // mEl = document.getElementById('textarea') //pega o elemento de envio de mensagens no DOM
 // mensagens = []
 
-// $("#textarea").keypress(function(e)
-// {
-//     if(e.which == 13) 
-//     {
-//         var text = $("#textarea").val()
-//         $("#textarea").val('')
-//         var time = new Date()
-//         $(".chat").append('<li class="self"><div class="msg"><span>' + $("#nickname").val() + ':</span><p>' + text + '</p><time>' + time.getHours() + ':' + time.getMinutes() + '</time></div></li>');
-        
-//         socket.emit("send", text);
-//         // automatically scroll down
-//         document.getElementById('bottom').scrollIntoView();
-//     }
-// })
 
 // socket.on('chat', function(client, msg) 
 // {    
@@ -83,22 +74,4 @@ $( function()
 //     $(".chat").append('<li class="field"><div class="msg"><span>' + client + ':</span><p>' + msg + '</p><time>' + time.getHours() + ':' + time.getMinutes() + '</time></div></li>')
 
 //     console.log('Resposta do servidor: ', client + msg)
-// })
-
-
-// $('#textarea').on('keyup', (ev) => //ev significa evento
-// {
-//     if(ev.keyCode === 13)
-//     {
-//         socket.emit('new message', { usuario: uEl.value = 'uFixo', mensagem: mEl.value })          
-//         mEl.value = ''
-
-//         socket.on('new message',  data =>
-//         {
-//             mensagens.push(data)  
-//             console.log('Dados enviados pelo servidor: ', data)
-//         })
-
-//         console.log('Socket.on não está funcionando')
-//     }    
 // })
