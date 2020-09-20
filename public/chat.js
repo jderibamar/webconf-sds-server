@@ -1,7 +1,7 @@
 $( function()
 { 
-    // var socket = io.connect('https://dashboard.heroku.com/apps/webconf-sds-server')
-    socket = io('http://localhost:3000')
+    var socket = io.connect('https://dashboard.heroku.com/apps/webconf-sds-server')
+    // socket = io('http://localhost:3000')
     var ready = false
    
     $('#submit').on('submit', (e) =>
