@@ -1,6 +1,6 @@
 $( function()
 { 
-    socket = io.connect('https://webconf-sds-server.herokuapp.com/')
+    // socket = io.connect('https://webconf-sds-server.herokuapp.com/')
     // socket = io('http://localhost:3000')
     var ready = false
    
@@ -23,7 +23,7 @@ $( function()
         if(e.which == 13) 
         {
         	var text = $("#textarea").val()
-        	$('#textarea').val('')
+        	// $('#textarea').val('')
         	var time = new Date()
             $('.chat').append('<li class="self"><div class="msg"><span>' + $("#nickname").val() 
             + ':</span><p>' + text + '</p><time>' + time.getHours() + ':' + time.getMinutes()
@@ -32,6 +32,8 @@ $( function()
             socket.emit('send', text)
             // automatically scroll down
             // document.getElementById('bottom').scrollIntoView()
+
+            scroll()
         }
     })      
 
@@ -44,24 +46,33 @@ $( function()
             + msg + '</p><time>' + time.getHours() 
             + ':' + time.getMinutes() + '</time></div></li>')
     	}
-    })    
-
-    socket.on('novo_cliente', client =>
-    {
-        peerId = client.id
-        
-        console.log(`Cliente ID: ${ client.id } conectou`)
-        
-        if (ready) 
-        {                
-            //    $('.chat').append('<li class="info">' + msg + '</li>')
-        }
-    })
+    })      
 
 })
 
+//função que empurra a barra de rolagem para baixo com aumento de mensagens digitadas
+function scroll()
+{
+    //scrollTop: quantidade de rolagem que o usuário fez
+    //scrollHeight: tamanho total do contêiner
 
-// socket = io()
+    let priVez = true //verificar se é a primeira vez que rola a barra de rolagem
+    let scrollDiv = document.getElementById('chat')
+
+    if(priVez)
+    {
+        scrollDiv.scrollTop = scrollDiv.scrollHeight
+        priVez = false
+    }
+    else if(scrollDiv.scrollTop + scrollDiv.scrollHeight === scrollDiv.scrollHeight)
+    {
+      scrollDiv.scrollTop = scrollDiv.scrollHeight
+    }        
+
+    // let altPag = document.body.scrollHeight  -> pega a altura do container        
+}
+
+
 
 // uEl = document.getElementById('nickname') //pega o elemento usuário no DOM
 // mEl = document.getElementById('textarea') //pega o elemento de envio de mensagens no DOM

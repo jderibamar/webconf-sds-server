@@ -22,25 +22,29 @@ app.use(cors())
 // Chatroom
 clients = {}
 let nomeU = ''
+totalU = []
 
 io.on('connection', client =>
 {  
-    console.log(`Socket ID: ${ client.id } conectou`)    
+    console.log(`Socket ID: ${ client.id } conectou`)
+    totalU.push(client.id)
+    console.log('Total de usuários conectados: ', totalU.length)
 
     client.on('join', name =>
-    {
-    	console.log(`${ name } entrou`)
-        clients[client.id] = name;
-        nomeU = name
+    {        
+        console.log(`${ name } entrou`)        
+        client.broadcast.emit('novo_cliente', nomeU, totalU.length )
 
-        client.broadcast.emit('novo_cliente', client.id, 'Evento UPDATE emitido' )
+        clients[client.id] = name  
+        nomeU = name          
+                
         // client.emit('update', 'Você conectou no servidor!')
         // client.broadcast.emit('update', name, client.id + ' has joined the server.')
-    });
+    })
 
     client.on('send', msg =>
     {
-    	console.log(`${ nomeU }: ${ msg }`);
+    	console.log(`${ clients[client.id] }: ${ msg }`);
         client.broadcast.emit('chat', clients[client.id], msg)
     })
 
@@ -48,7 +52,12 @@ io.on('connection', client =>
     {
     	console.log(`Cliente ID: ${ client.id } desconectou`)
         // io.emit("update", clients[client.id] + ' has left the server.')
-        delete clients[client.id]
+        delete clients[client.id]        
+
+        totalU.splice(totalU.indexOf(client) ,1)
+        console.log('Total de usuários: ', totalU.length)
+
+        client.emit('desconectou', totalU.length)
     })
 })
 
