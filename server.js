@@ -23,6 +23,7 @@ app.use(cors())
 clients = {}
 let nomeU = ''
 totalU = []
+listaNomes = []
 
 io.on('connection', client =>
 {  
@@ -32,12 +33,16 @@ io.on('connection', client =>
 
     client.on('join', name =>
     {        
-        console.log(`${ name } entrou`)        
-        client.broadcast.emit('novo_cliente', nomeU, totalU.length )
-
+        listaNomes.push(name)
+        console.log(`${ name } entrou`)
+        
         clients[client.id] = name  
-        nomeU = name          
-                
+        nomeU = name 
+
+        console.log('Array de nomes: ', listaNomes)
+        console.log('Total de clientes: ', totalU.length)
+        client.broadcast.emit('novo_cliente', nomeU, listaNomes )
+                                 
         // client.emit('update', 'Você conectou no servidor!')
         // client.broadcast.emit('update', name, client.id + ' has joined the server.')
     })
@@ -55,9 +60,13 @@ io.on('connection', client =>
         delete clients[client.id]        
 
         totalU.splice(totalU.indexOf(client) ,1)
+        listaNomes.splice(listaNomes.indexOf(client), 1)
+
+        console.log('Nomes restantes: ', listaNomes)
+
         console.log('Total de usuários: ', totalU.length)
 
-        client.emit('desconectou', totalU.length)
+        client.broadcast.emit('desconectou', totalU.length)
     })
 })
 

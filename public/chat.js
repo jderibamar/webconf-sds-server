@@ -1,7 +1,7 @@
 $( function()
 { 
     // socket = io.connect('https://webconf-sds-server.herokuapp.com/')
-    // socket = io('http://localhost:3000')
+    // socket = io()
     var ready = false
    
     $('#submit').on('submit', (e) =>
@@ -9,7 +9,8 @@ $( function()
 		e.preventDefault()
 		$('#nick').fadeOut()
 		$('#chat').fadeIn()
-		let name = $('#nickname').val()
+        let name = $('#nickname').val()
+
 		// let time = new Date()
 		// $('#name').html(name)
 		// $('#time').html('First login: ' + time.getHours() + ':' + time.getMinutes() )
