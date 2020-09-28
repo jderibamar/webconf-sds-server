@@ -26,14 +26,14 @@ $( function()
         	var text = $("#textarea").val()
         	// $('#textarea').val('')
         	var time = new Date()
-            $('.chat').append('<li class="self"><div class="msg"><span>' + $("#nickname").val() 
-            + ':</span><p>' + text + '</p><time>' + time.getHours() + ':' + time.getMinutes()
-            + '</time></div></li>')
+            $('.chat').append(` <li> <div> <span> ${ $("#nickname").val() } </span> <time>  
+            ${ time.getHours() }:${ time.getMinutes() } </time>  ${ text }  </div></li> `)
 
             socket.emit('send', text)
             // automatically scroll down
             // document.getElementById('bottom').scrollIntoView()
-
+           
+            $("#textarea").val('')
             scroll()
         }
     })      
@@ -43,13 +43,26 @@ $( function()
         if (ready) 
         {
             var time = new Date()
-            $('.chat').append('<li class="field"><div class="msg"><span>' + client + ':</span><p>' 
-            + msg + '</p><time>' + time.getHours() 
-            + ':' + time.getMinutes() + '</time></div></li>')
+            $('.chat').append(`<li> <div> <span> ${ client } </span> <time> ${ time.getHours() }:${ time.getMinutes() } </time>
+             ${ msg } </div> </li>`)
     	}
     })      
 
 })
+
+$('#textarea').attr('disabled', true)
+
+$('#nickname').on('keyup', (e) =>
+{
+    if(e.keyCode == 13)
+    {
+        $('#textarea').attr('disabled', false)
+        msgA = document.getElementById('textarea')
+        msgA.style.setProperty('background-color', '#fff')
+        msgA.focus()
+    }        
+})
+
 
 //função que empurra a barra de rolagem para baixo com aumento de mensagens digitadas
 function scroll()
